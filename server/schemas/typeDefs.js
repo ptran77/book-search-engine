@@ -13,7 +13,7 @@ const typeDefs = gpl`
   }
 
   input BookInput {
-    authurs: [String]
+    authors: [String]
     description: String
     title: String
     bookId: ID
@@ -31,7 +31,7 @@ const typeDefs = gpl`
 
   type Book {
     bookId: ID
-    authurs: [String]
+    authors: [String]
     description: String
     title: String
     image: String
