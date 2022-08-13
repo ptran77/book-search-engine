@@ -8,15 +8,13 @@ const { ApolloServer } = require('apollo-server-express');
 
 // import typeDefs and resolvers
 const { typeDefs, resolvers } = require("./schemas");
-// import db connection
-const db = require('./config/connection');
 // import authMiddleware
-const { authMiddleware } = require('./utils/auth')
+const { authMiddleware } = require('./utils/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // create Apollo server and pass schema data
@@ -47,12 +45,5 @@ const startApolloServer = async (typeDefs, resolvers) => {
     })
   })
 };
-
-
-// //app.use(routes);
-
-// db.once('open', () => {
-//   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
-// });
 
 startApolloServer(typeDefs, resolvers);
