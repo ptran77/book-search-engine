@@ -12,7 +12,9 @@ import { REMOVE_BOOK } from '../utils/mutations';
 const SavedBooks = () => {
 
   const { loading, data } = useQuery(GET_ME);
-  const userData = data?.me || {};
+  const userData = data?.me || [];
+
+  console.log(userData);
 
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
@@ -27,14 +29,8 @@ const SavedBooks = () => {
     try {
       // reformatted to use mutation instead of API import function
       const response = await removeBook({
-        variables: {
-          bookId: bookId,
-        }
+        variables: { bookId }
       });
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
 
       // const updatedUser = await response.json();
       // setUserData(updatedUser);
